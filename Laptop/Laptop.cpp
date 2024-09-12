@@ -13,13 +13,17 @@ Laptop::Laptop(const char* n, double pr, const char* mcpu, double prcpu):cpu(mcp
 	gpu = new GPU("Nvidia 4090", 1300);
 }
 
-Laptop::Laptop(const char* n, double pr, const char* mcpu, double prcpu, const char* mram, double pram, const char* mssd, double pssd, const char* mgpu, double pgpu) :
-	cpu(mcpu, prcpu), ram(mram, pram), ssd(mssd, pssd), gpu(mgpu, pgpu)
+Laptop::Laptop(const char* n, double pr, const char* mcpu, double prcpu, const char* mram, double pram, const char* mssd, double pssd, const char* mgpu, double pgpu) :cpu(mcpu, prcpu)
 {
 	name = new char[strlen(n) + 1];
 	strcpy_s(name, strlen(n) + 1, n);
 	price = pr;
+
+	ram = new Ram(mram, pram);
+	ssd = new SSD(mssd, pssd);
+	gpu = new GPU(mgpu, pgpu);
 }
+
 
 double Laptop::GetPrice()
 {
